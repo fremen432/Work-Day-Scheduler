@@ -8,6 +8,20 @@ var test = function(){
 // Current time in military time
 var time = moment().hour();
 
+// Save data object to local storage 
+var saveData = function(note, hour){
+    var userData = JSON.parse(localStorage.getItem("task")) || []
+
+    if (note !== ""){
+        objSave = {
+            note: note,
+            hour: hour
+        }
+        userData.push(objSave);
+        window.localStorage.setItem("task", JSON.stringify(userData))
+    }
+};
+
 // Display the current day in the header
 var displayDate = function() {
     var day = moment().format("[Today is ]dddd MMM Do YYYY");
@@ -35,38 +49,28 @@ var colorCode = function() {
 };
 
 var saveBtn = function(){
-
-    var userInput = $(this).siblings("textarea").val().trim();
-    var hourSpan = $(this).siblings(".hour").text().trim();
-    saveData(userInput, hourSpan)
-
-
-    alert("save-btn function works");
+    // alert("save-btn function works");
+    var valNote = $(this).siblings("textarea").val().trim();
+    var valHour = $(this).siblings(".hour").text().trim();
+    saveData(valNote, valHour)
 };
 
 var resetBtn = function(){
-
-    alert("reset-btn function works");
-
+    // alert("reset-btn function works");
     localStorage.clear();
     location.reload();
-
 };
-
 
 // function to run when page first loads
 $(document).ready(function(){
+    displayDate();
+    colorCode();
 
     // save and reset button .on('click') event listeners
     $('#save-btn').on('click', saveBtn);
     $('#reset-btn').on('click', resetBtn);
 
 
-    displayDate();
-    colorCode();
-
-
-
-    test();
+    // test();
 });
 
