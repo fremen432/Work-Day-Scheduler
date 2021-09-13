@@ -42,30 +42,24 @@ var displaySavedTask = function(task, hour){
     })
 };
 
+var loadData = function(){
+    var tasks = JSON.parse(localStorage.getItem("schedule"));
 
+    $.each(tasks, function(list, arr){
+        displaySavedTask(arr.note, arr.hour);
+    })
+};
 
-
-
-
-
-// var loadData = function(){
-//     var tasks = JSON.parse(localStorage.getItem("schedule"));
-
-//     $.each(tasks, function(list, arr){
-//         displaySavedTask(arr.note, arr.hour);
-//     })
-// };
-
-// var displaySavedTask = function(note, hour){
-//     var note = note;
-//     $(".hour").each(function(){
-//         if($(this).text() === hour){
-//             $(this).siblings("textarea").text(note);
-//         } else {
-//             $(this).siblings("textarea").text();
-//         }
-//     })
-// };
+var displaySavedTask = function(note, hour){
+    var note = note;
+    $(".hour").each(function(){
+        if($(this).text() === hour){
+            $(this).siblings("textarea").text(note);
+        } else {
+            $(this).siblings("textarea").text();
+        }
+    })
+};
 
 // Display the current day in the header
 var displayDate = function() {
