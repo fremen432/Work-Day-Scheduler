@@ -27,20 +27,45 @@ var loadData = function(){
 
     //looping over each object in the list
     $.each(tasks, function(list, arr){
-        displaySavedTask(arr.note, arr.hour);
+        displaySavedTask(arr.task, arr.hour);
     })
 };
 
-var displaySavedTask = function(note, hour){
-    var note = note;
+var displaySavedTask = function(task, hour){
+    var task = task;
     $(".hour").each(function(){
         if($(this).text() === hour){
-            $(this).siblings("textarea").text(note);
+            $(this).siblings("textarea").text(task);
         } else {
             $(this).siblings("textarea").text();
         }
     })
 };
+
+
+
+
+
+
+
+// var loadData = function(){
+//     var tasks = JSON.parse(localStorage.getItem("schedule"));
+
+//     $.each(tasks, function(list, arr){
+//         displaySavedTask(arr.note, arr.hour);
+//     })
+// };
+
+// var displaySavedTask = function(note, hour){
+//     var note = note;
+//     $(".hour").each(function(){
+//         if($(this).text() === hour){
+//             $(this).siblings("textarea").text(note);
+//         } else {
+//             $(this).siblings("textarea").text();
+//         }
+//     })
+// };
 
 // Display the current day in the header
 var displayDate = function() {

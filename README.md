@@ -1,6 +1,7 @@
 # Work Day Scheduler
 ## Challenge Description:
-* 
+* Created a work schedule API based on a typical 8hr work day so that a user can input different tasks for every hour and save their changes to their browser's local storage.
+* Used MomentJS to display current day.
 ## Technologies Used
 * HTML
 * CSS
