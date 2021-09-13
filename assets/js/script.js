@@ -67,7 +67,7 @@ $(document).ready(function(){
     colorCode();
 
     // save and reset button .on('click') event listeners
-    $('#save-btn').on('click', saveBtn);
+    $('.saveBtn').on('click', saveBtn);
     $('#reset-btn').on('click', resetBtn);
 
 
