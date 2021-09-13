@@ -1,14 +1,22 @@
+var test = function(){
+    console.log("Test function is working");
+    // alert("This function is working");
+};
+
+// --------------------------------------------------------
+
 // Current time in military time
 var time = moment().hour();
 
-// 
+// Display the current day in the header
 var displayDate = function() {
     var day = moment().format("[Today is ]dddd MMM Do YYYY");
     $('#currentDay').html(day);
 };
 
+// Color code hour sections based on past, present, future
 var colorCode = function() {
-    $("div .hour").each(function(){
+    $(".hour").each(function(){
         var hourSection = parseInt($(this).attr("id"));
 
         if (time > hourSection){
@@ -26,25 +34,39 @@ var colorCode = function() {
     });
 };
 
+var saveBtn = function(){
+
+    var userInput = $(this).siblings("textarea").val().trim();
+    var hourSpan = $(this).siblings(".hour").text().trim();
+    saveData(userInput, hourSpan)
 
 
+    alert("save-btn function works");
+};
 
+var resetBtn = function(){
+
+    alert("reset-btn function works");
+
+    localStorage.clear();
+    location.reload();
+
+};
 
 
 // function to run when page first loads
 $(document).ready(function(){
 
-    // Display the current day in the header
-    displayDate();
+    // save and reset button .on('click') event listeners
+    $('#save-btn').on('click', saveBtn);
+    $('#reset-btn').on('click', resetBtn);
 
-    // Color code hour sections based on past, present, future
+
+    displayDate();
     colorCode();
 
 
 
-
-    // alert(time);
-
-
+    test();
 });
 

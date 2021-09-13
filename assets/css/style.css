@@ -65,6 +65,7 @@ textarea{
   color: white;
 }
 
+
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
@@ -74,4 +75,20 @@ textarea{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#reset-btn{
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #06AED5;
+  color: white;
+}
+
+#reset-btn:hover{
+  background-color: #a7efff;
+}
+
+.cbm-btn:hover{
+  background-color: #a7efff;
 }
