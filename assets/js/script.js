@@ -18,9 +18,9 @@ var saveData = function(note, hour){
 };
 
 var saveBtn = function(){
-    var valNote = $(this).siblings("textarea").val().trim();
-    var valHour = $(this).siblings(".hour").text().trim();
-    saveData(valNote, valHour)
+    var userInputNote = $(this).siblings("textarea").val().trim();
+    var userInputHour = $(this).siblings(".hour").text().trim();
+    saveData(userInputNote, userInputHour)
 };
 
 var resetBtn = function(){
@@ -38,8 +38,8 @@ var displayDate = function() {
 
 var loadData = function(){
     var tasks = JSON.parse(localStorage.getItem("task"));
-    $.each(tasks, function(list, arr){
-        displaySavedTask(arr.note, arr.hour);
+    $.each(tasks, function(listIndex, indexObject){
+        displaySavedTask(indexObject.note, indexObject.hour);
     })
 };
 
