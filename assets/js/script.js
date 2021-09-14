@@ -1,3 +1,5 @@
+// Static elements ----------------------------------------------------------------
+
 // Current time in military time
 var time = moment().hour();
 
@@ -15,16 +17,23 @@ var saveData = function(note, hour){
     }
 };
 
-var displaySavedTask = function(task, hour){
-    var task = task;
+var saveBtn = function(){
+    var valNote = $(this).siblings("textarea").val().trim();
+    var valHour = $(this).siblings(".hour").text().trim();
+    saveData(valNote, valHour)
+};
 
-    $(".hour").each(function(){
-        if($(this).text() === hour){
-            $(this).siblings("textarea").text(task);
-        } else {
-            $(this).siblings("textarea").text();
-        }
-    })
+var resetBtn = function(){
+    localStorage.clear();
+    location.reload();
+};
+
+// Inner Working functions --------------------------------------------------------------------
+
+// Display the current day in the header
+var displayDate = function() {
+    var day = moment().format("[Today is ]dddd MMM Do YYYY");
+    $('#currentDay').html(day);
 };
 
 var loadData = function(){
@@ -40,15 +49,9 @@ var displaySavedTask = function(note, hour){
         if($(this).text() === hour){
             $(this).siblings("textarea").text(note);
         } else {
-            $(this).siblings("textarea").text();
+            $(this).siblings("textarea").text(); 
         }
     })
-};
-
-// Display the current day in the header
-var displayDate = function() {
-    var day = moment().format("[Today is ]dddd MMM Do YYYY");
-    $('#currentDay').html(day);
 };
 
 // Color code hour sections based on past, present, future
@@ -59,30 +62,16 @@ var colorCode = function() {
         if (time > hourSection){
             $(this).siblings("textarea").addClass("past");
         } 
-
         else if (time < hourSection){
             $(this).siblings("textarea").addClass("future");
         } 
-
         else {
             $(this).siblings("textarea").addClass("present");
         }
-
     });
 };
 
-var saveBtn = function(){
-    // alert("save-btn function works");
-    var valNote = $(this).siblings("textarea").val().trim();
-    var valHour = $(this).siblings(".hour").text().trim();
-    saveData(valNote, valHour)
-};
-
-var resetBtn = function(){
-    // alert("reset-btn function works");
-    localStorage.clear();
-    location.reload();
-};
+// On.ready function ----------------------------------------------------------
 
 // function to run when page first loads
 $(document).ready(function(){
@@ -94,4 +83,3 @@ $(document).ready(function(){
     $('.saveBtn').on('click', saveBtn);
     $('#reset-btn').on('click', resetBtn);
 });
-
