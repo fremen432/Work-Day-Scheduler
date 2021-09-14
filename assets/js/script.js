@@ -1,10 +1,3 @@
-var test = function(){
-    console.log("Test function is working");
-    // alert("This function is working");
-};
-
-// --------------------------------------------------------
-
 // Current time in military time
 var time = moment().hour();
 
@@ -22,17 +15,9 @@ var saveData = function(note, hour){
     }
 };
 
-var loadData = function(){
-    var tasks = JSON.parse(localStorage.getItem("schedule"));
-
-    //looping over each object in the list
-    $.each(tasks, function(list, arr){
-        displaySavedTask(arr.task, arr.hour);
-    })
-};
-
 var displaySavedTask = function(task, hour){
     var task = task;
+
     $(".hour").each(function(){
         if($(this).text() === hour){
             $(this).siblings("textarea").text(task);
@@ -43,8 +28,7 @@ var displaySavedTask = function(task, hour){
 };
 
 var loadData = function(){
-    var tasks = JSON.parse(localStorage.getItem("schedule"));
-
+    var tasks = JSON.parse(localStorage.getItem("task"));
     $.each(tasks, function(list, arr){
         displaySavedTask(arr.note, arr.hour);
     })
@@ -103,18 +87,11 @@ var resetBtn = function(){
 // function to run when page first loads
 $(document).ready(function(){
     displayDate();
-
     loadData();
-
-
-
     colorCode();
 
     // save and reset button .on('click') event listeners
     $('.saveBtn').on('click', saveBtn);
     $('#reset-btn').on('click', resetBtn);
-
-
-    // test();
 });
 
